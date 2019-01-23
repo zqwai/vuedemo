@@ -1,0 +1,18 @@
+{
+  "name": "vuedemo",
+  "version": "1.0.0",
+  "keywords": [
+    "vue",
+    "yran",
+    "stylus",
+    "es6"
+  ],
+  "description": "vue weyran stylus es6",
+  "main": "index.js",
+  "repository": "git@github.com:zqwai/vuedemo.git",
+  "author": "zqw <zqwde2006@163.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "webpack": "^4.29.0"
+  }
+}
