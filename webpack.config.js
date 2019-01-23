@@ -1,5 +1,5 @@
 const path = require('path');
-const webpack = require('webpack');
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 module.exports = {
     mode: 'production',
@@ -7,7 +7,7 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'dist'),
         publicPath: '/dist/',
-        filename: 'ya.js',
+        filename: 'bundle.js',
     },
     module: {
         rules: [
@@ -42,15 +42,6 @@ module.exports = {
             {
                 test:/\.vue$/,
                 loader:'vue-loader',
-                // options:{
-                //     loaders:{
-                //         'less':[//lang属性对应的名称
-                //             'vue-style-loader',//首先给vue的样式loader过滤一遍
-                //             'css-loader',//css-loader,把css转js
-                //             'less-loader'//用less编译
-                //         ]
-                //     }
-                // }
             },
             {
                 test:/\.less$/,
@@ -66,9 +57,7 @@ module.exports = {
             }
         ],
     },
-    resolve: {
-        alias: {
-            'vue$': 'vue/dist/vue.esm.js'
-        }
-    }
+    plugins: [
+      new VueLoaderPlugin()
+    ]
 };

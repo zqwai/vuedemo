@@ -1,18 +1,17 @@
+
 <template>
-    <div id="app">
-        <img src="./components/images/banner_o1.png" alt="logo" />
-        <span>{{msg}}</span>
-        <p class="test">test text</p>
+    <div class="wrap">
+        <div class="banner">
+            <img v-bind:src="img" width="100%">
+        </div>
     </div>
 </template>
 <script>
-import Vue from 'vue'
-    export default {
-        name:'app',
-        data(){
-            return {
-                msg:"hello vue !!"
-            }
-        },
+export default{
+    data(){
+        return{
+            img: './components/images/banner_01.jpg',
+        }
     }
+}
 </script>
