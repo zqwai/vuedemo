@@ -1,13 +1,21 @@
 const path = require('path');
-const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const webpack = require('webpack');
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+
+const ASSET_PATH = process.env.ASSET_PATH || '/';
 
 module.exports = {
-    mode: 'production',
-    entry: './app/index.js',
+    mode: 'development',
+    entry: {
+        index: './app/app.js',
+        // another: './app/another-module.js'
+      },
     output: {
         path: path.resolve(__dirname, 'dist'),
-        publicPath: '/dist/',
-        filename: 'bundle.js',
+        publicPath: ASSET_PATH,
+        filename: '[name].[hash].js',
     },
     module: {
         rules: [
@@ -57,7 +65,26 @@ module.exports = {
             }
         ],
     },
+    devServer: {
+		contentBase: path.join(__dirname, "dist"),
+		compress: true,
+		port: 9000,
+        hot: true
+        // contentBase: path.join(__dirname, "dist"),
+	},
     plugins: [
-      new VueLoaderPlugin()
+        new CleanWebpackPlugin(['dist']),
+        new VueLoaderPlugin(),
+        new HtmlWebpackPlugin({
+            title: 'vue test',
+            filename: 'index.html',
+            template: 'app/app.html',
+            // inject: 'head'
+        }),
+        new webpack.NamedModulesPlugin(),
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.DefinePlugin({
+            'process.env.ASSET_PATH': JSON.stringify(ASSET_PATH)
+        }),
     ]
 };
