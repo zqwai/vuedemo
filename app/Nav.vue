@@ -2,11 +2,7 @@
 <template>
     <section class="wrap">
         <nav class="nav">
-            <ul id="example-1">
-                <li v-for="item in items" :key="item.id">
-                    {{ item.message }}
-                </li>
-            </ul>
+
         </nav>
         <section class="banner">
             <img v-bind:src="img" width="100%">
@@ -15,14 +11,6 @@
             <p>{{ foo }} <span v-html="rawHtml"></span></p>
             <button v-on:click="foo = 'baz'">Change it</button>
             <div class="text">{{ text }}</div>
-            <ul id="v-for-object" class="demo">
-                <li v-for="value in object" :key="value.id">
-                    {{ value }}
-                </li>
-            </ul>
-
-            <input v-model="msg" placeholder="edit me" width="100%">
-            <p>Message is: {{ msg }}</p>
         </section>
         <footer class="footer">
             <p>{{copyright}}</p>
@@ -33,22 +21,12 @@
 export default{
     data(){
         return{
-            msg:'wwe',
             copyright:'版权所有',
             img: 'static/images/banner_01.jpg',
             text: '页面加载于 ' + new Date().toLocaleString(),
             foo: 'ss',
             a: 1,
-            rawHtml: '<span style="color: red">This should be red.</span>',
-            items: [
-                { message: 'Foo' },
-                { message: 'Bar' }
-            ],
-            object: {
-                firstName: 'John',
-                lastName: 'Doe',
-                age: 30
-            }
+            rawHtml: '<span style="color: red">This should be red.</span>'
         }
     },
     created: function () {
