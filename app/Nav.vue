@@ -1,37 +1,33 @@
 
 <template>
-    <section class="wrap">
-        <nav class="nav">
-
-        </nav>
-        <section class="banner">
-            <img v-bind:src="img" width="100%">
-        </section>
-        <section class="cont">
-            <p>{{ foo }} <span v-html="rawHtml"></span></p>
-            <button v-on:click="foo = 'baz'">Change it</button>
-            <div class="text">{{ text }}</div>
-        </section>
-        <footer class="footer">
-            <p>{{copyright}}</p>
-        </footer>
-    </section>
+    <ol>
+        <!--
+        现在我们为每个 todo-item 提供 todo 对象
+        todo 对象是变量，即其内容可以是动态的。
+        我们也需要为每个组件提供一个“key”，稍后再
+        作详细解释。
+        -->
+        <todo-item
+        v-for="item in groceryList"
+        v-bind:todo="item"
+        v-bind:key="item.id">
+        </todo-item>
+    </ol>
 </template>
 <script>
+Vue.component('todo-item', {
+  props: ['todo'],
+  template: '<li>{{ todo.text }}</li>'
+})
 export default{
     data(){
         return{
-            copyright:'版权所有',
-            img: 'static/images/banner_01.jpg',
-            text: '页面加载于 ' + new Date().toLocaleString(),
-            foo: 'ss',
-            a: 1,
-            rawHtml: '<span style="color: red">This should be red.</span>'
+            groceryList: [
+                { id: 0, text: '蔬菜' },
+                { id: 1, text: '奶酪' },
+                { id: 2, text: '随便其它什么人吃的东西' }
+            ],
         }
     },
-    created: function () {
-        // `this` 指向 vm 实例
-        console.log('a is: ' + this.a)
-    }
 }
 </script>

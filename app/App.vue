@@ -1,59 +1,64 @@
-
 <template>
     <section class="wrap">
-        <nav class="nav">
-            <ul id="example-1">
-                <li v-for="item in items" :key="item.id">
-                    {{ item.message }}
-                </li>
-            </ul>
-        </nav>
-        <section class="banner">
-            <img v-bind:src="img" width="100%">
-        </section>
-        <section class="cont">
-            <p>{{ foo }} <span v-html="rawHtml"></span></p>
-            <button v-on:click="foo = 'baz'">Change it</button>
-            <div class="text">{{ text }}</div>
-            <ul id="v-for-object" class="demo">
-                <li v-for="value in object" :key="value.id">
-                    {{ value }}
-                </li>
-            </ul>
 
-            <input v-model="msg" placeholder="edit me" width="100%">
-            <p>Message is: {{ msg }}</p>
-        </section>
-        <footer class="footer">
-            <p>{{copyright}}</p>
-        </footer>
+
+<el-container  type="flex">
+  <el-header>Header</el-header>
+  <el-main>Main</el-main>
+  <el-footer>Footer</el-footer>
+</el-container>                
+        
+
+
     </section>
 </template>
 <script>
 export default{
     data(){
         return{
-            msg:'wwe',
-            copyright:'版权所有',
-            img: 'static/images/banner_01.jpg',
-            text: '页面加载于 ' + new Date().toLocaleString(),
-            foo: 'ss',
-            a: 1,
-            rawHtml: '<span style="color: red">This should be red.</span>',
-            items: [
-                { message: 'Foo' },
-                { message: 'Bar' }
-            ],
-            object: {
-                firstName: 'John',
-                lastName: 'Doe',
-                age: 30
-            }
+            
         }
     },
     created: function () {
         // `this` 指向 vm 实例
         console.log('a is: ' + this.a)
-    }
+    },
 }
 </script>
+
+
+<style>
+  .el-header, .el-footer {
+    background-color: #B3C0D1;
+    color: #333;
+    text-align: center;
+    line-height: 60px;
+  }
+  
+  .el-aside {
+    background-color: #D3DCE6;
+    color: #333;
+    text-align: center;
+    line-height: 200px;
+  }
+  
+  .el-main {
+    background-color: #E9EEF3;
+    color: #333;
+    text-align: center;
+    line-height: 160px;
+  }
+  
+  body > .el-container {
+    margin-bottom: 40px;
+  }
+  
+  .el-container:nth-child(5) .el-aside,
+  .el-container:nth-child(6) .el-aside {
+    line-height: 260px;
+  }
+  
+  .el-container:nth-child(7) .el-aside {
+    line-height: 320px;
+  }
+</style>
