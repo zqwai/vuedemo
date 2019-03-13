@@ -1,39 +1,40 @@
-// 
+// var
+globeWhite = white
+globeBlue = #5092d8
+
+colorF1 = #f1f1f1
+colorF2 = #f2f2f2
+
 body
 html
   margin 0
   padding 0
+
 html
-  background-color #f2f2f2
+  background-color colorF2
+
 border-radius()
-  -webkit-border-radius: arguments
-  -moz-border-radius: arguments
-  border-radius: arguments
+  -webkit-border-radius arguments
+  -moz-border-radius arguments
+  border-radius arguments
+
 a.button
-  border-radius: 5px
-.wrap
-  width 100%
-  max-width 640px
-  margin 0 auto
-  position relative
-  background-color #fff
-·
-.nav
-.banner
-.cont
-.footer
-  width 100%
-  position relative
-  height auto
+  border-radius 5px
 
-.nav ul
-  list-style none
-  margin 0
-  padding 0
-  display flex
-  background-color #007AFF
-  li
-    flex 1
+.header
+    list-style none
+    padding 0
+    margin 0
+    line-height 3rem
+    width 100%
     text-align center
-  
+    display flex
+    background-color globeBlue
 
+.header li
+    display inline-block
+    width 20%
+
+.header li a
+    text-decoration none
+    color globeWhite

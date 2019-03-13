@@ -4,6 +4,7 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
+// const extractCSS = require('extractCSS')
 
 const ASSET_PATH = process.env.ASSET_PATH || '/';
 
@@ -31,14 +32,18 @@ module.exports = {
             },
             {
                 test: /\.css$/,
+                // loader:'style-loader!css-loader!stylus-loader'
                 use: [
                     'style-loader',
-                    'css-loader'
+                    'css-loader',
+                    'stylus-loader',
+                    // 'postcss-loader'
                 ]
                 // use: ExtractTextPlugin.extract({
                 //     fallback: "style-loader",
                 //     use: "css-loader"
                 //   })
+                
             },
             {
                 test: /\.(png|svg|jpg|gif)$/,
@@ -59,6 +64,14 @@ module.exports = {
             {
                 test:/\.vue$/,
                 loader:'vue-loader',
+                options: {
+                    hotReload: true, // 关闭热重载
+                    // postcss: [require('postcss-cssnext')()], //postcss
+                    // extractCSS: true, //提取 CSS 
+                    // css: ExtractTextPlugin.extract({
+                    //     use: 'css-loader',
+                    //   })
+                }
             },
             {
                 test:/\.less$/,
@@ -97,7 +110,7 @@ module.exports = {
         new HtmlWebpackPlugin({         //主页模版文件及生成主页文件
             title: 'vue test',
             filename: 'index.html',
-            template: 'app/app.html',
+            template: 'index.html',
             // inject: 'head'
         }),
         new webpack.NamedModulesPlugin(),
@@ -106,6 +119,12 @@ module.exports = {
             'process.env.ASSET_PATH': JSON.stringify(ASSET_PATH)
         }),
         
-        // new Ex("【name】.css"),    // 提取css
+        // new ExtractTextPlugin("style.css"),    // 提取css
+
+        // require('precss'),  // postcss-loader
+        // require('autoprefixer')  // postcss-loader
+
+        
+
     ]
 };
